@@ -39,3 +39,16 @@ void USART3_IRQHandler(void)
 {
     HAL_UART_IRQHandler(&huart3);
 }
+
+void EXTI0_IRQHandler(void)
+{
+    HAL_GPIO_EXTI_IRQHandler(USER_BUTTON_PIN);
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+    if (GPIO_Pin == USER_BUTTON_PIN)
+    {
+        HAL_GPIO_TogglePin(LED_GPIO_PORT, LED_PIN);
+    }
+}

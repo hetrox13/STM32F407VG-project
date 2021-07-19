@@ -47,5 +47,19 @@ void UART_Init(void)
 
 void User_Button_Init(void)
 {
-    GPIO_TypeDef GPIO_InitStruct;
+    // User Button GPIO config
+    USER_BUTTON_CLK_ENABLE();
+    GPIO_InitTypeDef GPIO_InitStruct;
+    GPIO_InitStruct.Pin = USER_BUTTON_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;
+    HAL_GPIO_Init(USER_BUTTON_GPIO_PORT, &GPIO_InitStruct);
+
+    // User Button SYSCFG config
+    USER_BUTTON_SYSCFG_CLK_ENABLE();
+
+    //User Button External Interrupt Init
+    HAL_NVIC_SetPriority(EXTI0_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 }

@@ -37,6 +37,7 @@ void User_Button_Init(void);
 #define UART_PIN_RX GPIO_PIN_11
 
 //User Button configuration
+#define USER_BUTTON_SYSCFG_CLK_ENABLE() __HAL_RCC_SYSCFG_CLK_ENABLE()
 #define USER_BUTTON_CLK_ENABLE() __HAL_RCC_GPIOA_CLK_ENABLE()
 #define USER_BUTTON_GPIO_PORT GPIOA
 #define USER_BUTTON_PIN GPIO_PIN_0
